@@ -1,0 +1,31 @@
+{
+  "name": "@domain.js/schema",
+  "version": "0.1.0",
+  "description": "domain.js schema 通用模块",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && jest ./__test__ --coverage",
+    "test:watch": "export NODE_ENV=test && jest ./__test__ --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/domain-js/schema/.git"
+  },
+  "keywords": [
+    "schema",
+    "domain.js"
+  ],
+  "author": "Redstone Zhao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/domain-js/schema/issues"
+  },
+  "homepage": "https://github.com/domain-js/schema#readme",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "lodash": "^4.17.20"
+  },
+  "dependencies": {
+    "ajv": "^7.0.3"
+  }
+}
