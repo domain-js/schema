@@ -1,11 +1,13 @@
 const util = require("util");
 const Ajv = require("ajv").default;
+const addFormats = require("ajv-formats").default;
 
 function Main(cnf, deps) {
   const { _ } = deps;
 
   const compile = _.memoize(schema => {
     const ajv = new Ajv();
+    addFormats(ajv);
     return ajv.compile(schema);
   });
 

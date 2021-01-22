@@ -42,5 +42,10 @@ describe("@domain.js/schema", () => {
       expect(() => schema.validate({ type: "string" }, 123)).toThrow();
       expect(() => schema.validate({ type: "string" })).toThrow();
     });
+
+    it("case2, format", () => {
+      expect(schema.validate({ type: "string", format: "url" }, "https://xiongfei.me/")).toBe(true);
+      expect(() => schema.validate({ type: "string", format: "url" }, "123")).toThrow();
+    });
   });
 });

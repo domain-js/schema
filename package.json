@@ -1,6 +1,6 @@
 {
   "name": "@domain.js/schema",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "domain.js schema 通用模块",
   "main": "index.js",
   "scripts": {
@@ -11,10 +11,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/domain-js/schema/.git"
   },
-  "keywords": [
-    "schema",
-    "domain.js"
-  ],
+  "keywords": ["schema", "domain.js"],
   "author": "Redstone Zhao",
   "license": "MIT",
   "bugs": {
@@ -26,6 +23,7 @@
     "lodash": "^4.17.20"
   },
   "dependencies": {
-    "ajv": "^7.0.3"
+    "ajv": "^7.0.3",
+    "ajv-formats": "^1.5.1"
   }
 }
