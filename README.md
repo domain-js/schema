@@ -7,12 +7,18 @@
 <pre>npm i @domain.js/schema --save</pre>
 
 # cnf
-<pre>无</pre>
+专有配置信息 `schema`
+
+| 名称 | 类型 | 必填 | 默认值 | 描述 | 样例 |
+| ---- | ---- | ---- | ------ | ---- | ---- |
+| coerceTypes | boolean | `否` | `false` | 是否尝试转换类型 | true |
+| useDefaults | boolean | `否` | `false` | 是否启用默认值 | true |
+| removeAdditional | boolean | `否` | `false` | 是否删除未定义的数据，会修改元数据 | true |
+
+[更多参考 Ajv 构造函数参数](https://ajv.js.org/docs/api.html#options)
 
 # deps
-| 模块名 | 别名 | 用到的方法 | 描述 |
-| ------ | ---- | ---------- | ---- |
-| _ | `无` | memoize | 利用 memoize 避免相同的 schema 多次执行 ajv.compile, 以内存换cpu, 提升效率 |
+<pre>无</pre>
 
 
 # Usage

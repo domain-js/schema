@@ -1,6 +1,6 @@
 {
   "name": "@domain.js/schema",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "domain.js schema 通用模块",
   "main": "index.js",
   "scripts": {
@@ -19,8 +19,7 @@
   },
   "homepage": "https://github.com/domain-js/schema#readme",
   "devDependencies": {
-    "jest": "^24.9.0",
-    "lodash": "^4.17.20"
+    "jest": "^24.9.0"
   },
   "dependencies": {
     "ajv": "^7.0.3",
