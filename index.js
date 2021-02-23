@@ -6,6 +6,8 @@ function Main(cnf) {
   const ajv = new Ajv(cnf.schema);
   addFormats(ajv);
 
+  const compile = schema => ajv.compile(schema);
+
   /**
    * 将函数处理为自动校验参数合法性
    */
@@ -33,7 +35,7 @@ function Main(cnf) {
     throw ajv.errors;
   };
 
-  return Object.freeze({ auto, validate });
+  return Object.freeze({ auto, validate, compile, ajv });
 }
 
 Main.Deps = [];

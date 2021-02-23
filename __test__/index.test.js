@@ -52,66 +52,94 @@ describe("@domain.js/schema", () => {
 
   describe("coerceTypes is true", () => {
     const schema = Schema({ schema: { coerceTypes: true } });
-    expect(schema.validate({ type: "integer" }, "1")).toBe(true);
-    const data = { age: "20" };
-    expect(
-      schema.validate({ type: "object", properties: { age: { type: "integer" } } }, data)
-    ).toBe(true);
-    expect(data).toEqual({ age: 20 });
+    it("case1", () => {
+      expect(schema.validate({ type: "integer" }, "1")).toBe(true);
+      const data = { age: "20" };
+      expect(
+        schema.validate({ type: "object", properties: { age: { type: "integer" } } }, data)
+      ).toBe(true);
+      expect(data).toEqual({ age: 20 });
+    });
   });
 
   describe("useDefaults is true", () => {
     const schema = Schema({ schema: { coerceTypes: true, useDefaults: true } });
-    expect(schema.validate({ type: "integer" }, "1")).toBe(true);
-    const data = { age: "20" };
-    expect(
-      schema.validate(
-        {
-          type: "object",
-          properties: {
-            age: { type: "integer" },
-            name: { type: "string", maxLength: 20, default: "Tom" }
-          }
-        },
-        data
-      )
-    ).toBe(true);
-    expect(data).toEqual({ age: 20, name: "Tom" });
+    it("case1", () => {
+      expect(schema.validate({ type: "integer" }, "1")).toBe(true);
+      const data = { age: "20" };
+      expect(
+        schema.validate(
+          {
+            type: "object",
+            properties: {
+              age: { type: "integer" },
+              name: { type: "string", maxLength: 20, default: "Tom" }
+            }
+          },
+          data
+        )
+      ).toBe(true);
+      expect(data).toEqual({ age: 20, name: "Tom" });
+    });
   });
 
   describe("removeAdditional is true", () => {
     const schema = Schema({ schema: { removeAdditional: true } });
     const data = { age: 20, gender: "female" };
-    expect(
-      schema.validate(
-        {
-          type: "object",
-          additionalProperties: false,
-          properties: {
-            age: { type: "integer" },
-            name: { type: "string", maxLength: 20, default: "Tom" }
-          }
-        },
-        data
-      )
-    ).toBe(true);
-    expect(data).toEqual({ age: 20 });
+    it("case1", () => {
+      expect(
+        schema.validate(
+          {
+            type: "object",
+            additionalProperties: false,
+            properties: {
+              age: { type: "integer" },
+              name: { type: "string", maxLength: 20, default: "Tom" }
+            }
+          },
+          data
+        )
+      ).toBe(true);
+      expect(data).toEqual({ age: 20 });
+    });
   });
 
   describe("union types", () => {
     const schema = Schema({});
     const data = { age: "20" };
-    const schm = {
-      type: "object",
-      properties: {
-        age: {
-          anyOf: [{ type: "integer" }, { type: "string" }, { type: "null" }]
+    it("case1", () => {
+      const schm = {
+        type: "object",
+        properties: {
+          age: {
+            anyOf: [{ type: "integer" }, { type: "string" }, { type: "null" }]
+          }
         }
-      }
-    };
-    expect(schema.validate(schm, data)).toBe(true);
-    expect(schema.validate(schm, { age: "tweety" })).toBe(true);
-    expect(schema.validate(schm, { age: null })).toBe(true);
-    expect(schema.validate(schm, { age: 20 })).toBe(true);
+      };
+      expect(schema.validate(schm, data)).toBe(true);
+      expect(schema.validate(schm, { age: "tweety" })).toBe(true);
+      expect(schema.validate(schm, { age: null })).toBe(true);
+      expect(schema.validate(schm, { age: 20 })).toBe(true);
+    });
+  });
+
+  describe("compile", () => {
+    const schema = Schema({});
+    const data = { age: 20 };
+    it("case1", () => {
+      const schm = {
+        type: "object",
+        properties: {
+          age: {
+            type: "string"
+          }
+        }
+      };
+      const validator = schema.compile(schm);
+      expect(validator(data)).toBe(false);
+      expect(validator({ age: "tweety" })).toBe(true);
+      expect(validator({ age: null })).toBe(false);
+      expect(validator({ age: 20 })).toBe(false);
+    });
   });
 });

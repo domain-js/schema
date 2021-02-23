@@ -26,3 +26,5 @@
 | ---- | ---- | ---- |
 | auto | 封装一个函数，让其拥有自动执行参数格式校验的能力 | schema.auto(fn, jsonSchema, errorFn, extra) |
 | validate | 验证一个数据是否与指定的 schema 设定匹配 | schema.validate(jsonSchema, data) |
+| compile | 返回一个基于shema定义的验证器函数 | schema.compile(jsonSchema) |
+| ajv | 返回一个 Ajv 实例 | new Ajv() 的结果 |
