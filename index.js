@@ -15,12 +15,13 @@ function Main(cnf) {
     if (!Array.isArray(schema)) {
       throw Error(`方法参数定义必须是一个数组 ${util.format(schema)}`);
     }
+    const validators = schema.map(x => compile(x));
 
     return (...args) => {
       for (let i = 0; i < schema.length; i += 1) {
-        const valid = ajv.validate(schema[i], args[i]);
+        const valid = validators[i](args[i]);
         if (!valid) {
-          throw errorFn(i + 1, ajv.errors, args[i], extra);
+          throw errorFn(i + 1, validators[i].errors, args[i], extra);
         }
       }
       return fn(...args);
